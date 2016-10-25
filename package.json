@@ -1,7 +1,7 @@
 {
-  "name": "flask_users",
+  "name": "flask_backed_react",
   "version": "0.0.1",
-  "description": "simplie user auth api",
+  "description": "Boilerplate for a React application with a flask backend",
   "main": "app/static/main.js",
   "scripts": {
     "build": "webpack --config webpack-build.config.js",
@@ -34,15 +34,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.16.0",
-    "bf-solid": "^2.3.2",
-    "history": "^3.2.1",
-    "isomorphic-fetch": "^2.2.1",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.7.0",
-    "redux": "^3.6.0",
-    "redux-logger": "^2.7.0",
-    "redux-thunk": "^2.1.0"
+    "react-dom": "^15.3.2"
   }
 }
