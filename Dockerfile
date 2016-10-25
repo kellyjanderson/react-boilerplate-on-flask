@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 MAINTAINER Kelly Aanderson <kelly.j.anderson@gmail.com>
-# This docker file is primarily the work of Phillip Baily <phillip@bailey.st>
+# This docker file is based on the work of Phillip Baily <phillip@bailey.st>
 # from the docker-flask https://hub.docker.com/r/p0bailey/docker-flask/
 
 ENV DEBIAN_FRONTEND noninteractive
