@@ -8,8 +8,8 @@ module.exports = {
     entry: [
         'webpack-dev-server/client?http://localhost:6120',
         'webpack/hot/only-dev-server',
-        './static/js/main.js',
-        './static/sass/main.scss'
+        '.app/static/js/main.js',
+        '.app/static/sass/main.scss'
     ],
     output: {
         path: path.join(__dirname, 'static/build'),

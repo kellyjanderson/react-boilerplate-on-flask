@@ -6,12 +6,12 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
     entry: [
-        './static/js/main.js',
-        './static/sass/main.scss'
+        './app/static/js/main.js',
+        './app/static/sass/main.scss'
     ],
     output: {
-        filename: './static/build/build.js',
-        cssFilename: './static/build/build.css'
+        filename: './app/static/build/build.js',
+        cssFilename: './app/static/build/build.css'
     },
     resolve: {
         extensions: [ '', '.js', '.json'],
@@ -22,7 +22,7 @@ var config = {
     },
     plugins: [
         new webpack.DefinePlugin({process: {env: {NODE_ENV: JSON.stringify('production')}}}),
-        new ExtractTextPlugin('./static/build/build.css'),
+        new ExtractTextPlugin('./app/static/build/build.css'),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 screw_ie8: true,
@@ -40,39 +40,23 @@ var config = {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: ['babel?cacheDirectory=true'],
-                include: path.join(__dirname, 'static/js')
-            },
-            {
-                test: /\.json$/,
-                loader: 'json-loader',
-                include: [
-                    path.join(__dirname, 'static/js/fixtures'),
-                    path.join(__dirname, 'node_modules/moment-timezone/data/packed')
-                    ]
+                loaders: ['babel?cacheDirectory=true']
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css!sass'),
-                include: path.join(__dirname, 'static/sass')
+                loader: ExtractTextPlugin.extract('style', 'css!sass')
             },
-            {
-                test: /\.svg$/,
-                loader: 'svg-url',
-                include: path.join(__dirname, 'static/img')
-            },
-            {
-                test: /\.woff$/,
-                loader: 'url?limit=100000',
-                include: path.join(__dirname, 'static/fonts')
-            },
-            {
-                test: /\.woff2($|\?)/,
-                loader: 'url?limit=100000',
-                include: path.join(__dirname, 'static/fonts')
-            }]
+            { 
+                test: /\.jsx?$/,         // Match both .js and .jsx files
+                exclude: /node_modules/, 
+                loader: "babel", 
+                query:
+                {
+                    presets:['react']
+                }
+            }
+        ]
     }
 };
-
 
 module.exports = config;
