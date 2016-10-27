@@ -1,9 +1,11 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDom from 'react-dom';
-import hello from './components/hello';
+import Hello from './components/hello';
 
 ReactDom.render(
-    <hello />,
+    <div>
+        <Hello />
+    </div>,
     document.querySelector('#container')
 );
