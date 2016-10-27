@@ -1,8 +1,11 @@
 from flask import Flask, render_template
+import os
+
 app = Flask(__name__)
 
 app.config.from_object('config.default')
-app.config.from_envvar('APP_CONFIG_FILE')
+if os.environ.get('APP_CONFIG_FILE'):
+    app.config.from_envvar('APP_CONFIG_FILE')
 
 @app.route('/')
 def root(name=None):
