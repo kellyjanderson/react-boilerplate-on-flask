@@ -46,13 +46,13 @@ var config = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style', 'css!sass')
             },
-            { 
+            {
                 test: /\.jsx?$/,         // Match both .js and .jsx files
-                exclude: /node_modules/, 
-                loader: "babel", 
+                exclude: /node_modules/,
+                loader: 'babel',
                 query:
                 {
-                    presets:['react']
+                    presets: ['react']
                 }
             }
         ]
