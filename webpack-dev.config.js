@@ -4,47 +4,21 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: [
-        'webpack-dev-server/client?http://localhost:6120',
-        'webpack/hot/only-dev-server',
-        '.app/static/js/main.js',
-        '.app/static/sass/main.scss'
+        'webpack-dev-server/client?http://localhost:6120/',
+        './app/static/js/main.js'
     ],
     output: {
-        path: path.join(__dirname, 'static/build'),
+        path: path.join(__dirname, 'app/static/build'),
         filename: 'build.js',
         publicPath: 'http://localhost:6120/static/build/'
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ],
     module: {
         loaders: [{
-            test: /\.js$/,
-            loaders: ['react-hot', 'babel'],
-            include: path.join(__dirname, 'static')
-        },
-        {
-            test: /\.json$/,
-            loader: 'json-loader'
-        },
-        {
-            test: /\.scss$/,
-            loaders: ['style', 'css', 'sass']
-        },
-        {
-            test: /\.svg$/,
-            loader: 'svg-url'
-        },
-        {
-            test: /\.woff$/,
-            loader: 'url?limit=100000'
-        },
-        {
-            test: /\.woff2($|\?)/,
-            loader: 'url?limit=100000'
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
         }]
     }
 };
