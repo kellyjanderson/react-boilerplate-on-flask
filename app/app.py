@@ -9,7 +9,8 @@ if os.environ.get('APP_CONFIG_FILE'):
 
 @app.route('/')
 def root(name=None):
-    return render_template('app.html', data=app.config['JAVASCRIPT_BUILD_FILE'])
+    return render_template('app.html', 
+        data={'script':app.config['JAVASCRIPT_BUILD_FILE']})
 
 if __name__ == '__main__':
     app.run()
