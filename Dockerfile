@@ -18,7 +18,6 @@ RUN mkdir -p /var/log/nginx/app /var/log/uwsgi/app /var/log/supervisor \
 && rm /etc/nginx/sites-enabled/default \
 && ln -s /etc/nginx/sites-available/flask_nginx.conf /etc/nginx/sites-enabled/flask_nginx.conf \
 && echo "daemon off;" >> /etc/nginx/nginx.conf \
-&& pip install -r /var/www/app/requirements.txt \
 && chown -R www-data:www-data /var/www/app \
 && chown -R www-data:www-data /var/log
 
@@ -28,8 +27,10 @@ RUN mkdir -p build/app/static/build/
 COPY .babelrc build/
 COPY package.json build/
 COPY webpack* build/
+COPY requirements.txt build/
 WORKDIR build/
 
+RUN pip install -r requirements.txt
 RUN npm install
 RUN npm run build
 
