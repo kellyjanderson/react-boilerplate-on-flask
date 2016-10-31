@@ -136,3 +136,4 @@ jspm_packages
 .idea
 .vscode
 app/static/build
+jsconfig.json
