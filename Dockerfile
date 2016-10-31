@@ -22,14 +22,18 @@ RUN mkdir -p /var/log/nginx/app /var/log/uwsgi/app /var/log/supervisor \
 && chown -R www-data:www-data /var/www/app \
 && chown -R www-data:www-data /var/log
 
-WORKDIR /build
-COPY .babelrc /build/
-COPY package.json /build/
-COPY webpack* /build/
-COPY app /build/
+RUN mkdir -p build/
+COPY app/ build/app/
+RUN mkdir -p build/app/static/build/
+COPY .babelrc build/
+COPY package.json build/
+COPY webpack* build/
+WORKDIR build/
+
 RUN npm install
 RUN npm run build
-COPY ./app/static/build /var/www/app/static/build
+
+RUN cp -r /build/app/static/build /var/www/app/static/build
 
 EXPOSE 80
 
